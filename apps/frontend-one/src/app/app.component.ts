@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Book } from '@nx-dev-starter/api-one-interfaces';
 
 @Component({
   selector: 'nx-dev-starter-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend-one';
+  book: Book = {
+    name: 'Angular',
+    author: 'NX'
+  };
 }

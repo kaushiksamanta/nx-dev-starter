@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { Book } from '@nx-dev-starter/api-one-interfaces';
 
 @Injectable()
 export class AppService {
-  getData(): { message: string } {
-    return ({ message: 'Welcome to api-one!' });
+  getData(): Book {
+    return ({ name: 'Angular', author: 'Nest' });
   }
 }
