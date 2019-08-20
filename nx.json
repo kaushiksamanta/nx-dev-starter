@@ -8,16 +8,25 @@
     "nx.json": "*"
   },
   "projects": {
-    "app-one-e2e": {
-      "tags": []
-    },
-    "app-one": {
-      "tags": []
-    },
-    "api": {
-      "tags": []
-    },
     "api-interfaces": {
+      "tags": []
+    },
+    "frontend-one-e2e": {
+      "tags": []
+    },
+    "frontend-one": {
+      "tags": []
+    },
+    "frontend-two-e2e": {
+      "tags": []
+    },
+    "frontend-two": {
+      "tags": []
+    },
+    "api-one": {
+      "tags": []
+    },
+    "api-two": {
       "tags": []
     }
   }

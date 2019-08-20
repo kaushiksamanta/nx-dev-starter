@@ -1,39 +1,65 @@
 {
   "version": 1,
   "projects": {
-    "app-one": {
-      "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
+    "api-interfaces": {
+      "root": "libs/api-interfaces",
+      "sourceRoot": "libs/api-interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-interfaces/tsconfig.lib.json",
+              "libs/api-interfaces/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api-interfaces/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-interfaces/jest.config.js",
+            "tsConfig": "libs/api-interfaces/tsconfig.spec.json"
+          }
         }
-      },
-      "root": "apps/app-one",
-      "sourceRoot": "apps/app-one/src",
+      }
+    },
+    "frontend-one": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/frontend-one",
+      "sourceRoot": "apps/frontend-one/src",
       "prefix": "nx-dev-starter",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/app-one",
-            "index": "apps/app-one/src/index.html",
-            "main": "apps/app-one/src/main.ts",
-            "polyfills": "apps/app-one/src/polyfills.ts",
-            "tsConfig": "apps/app-one/tsconfig.app.json",
+            "outputPath": "dist/apps/frontend-one",
+            "index": "apps/frontend-one/src/index.html",
+            "main": "apps/frontend-one/src/main.ts",
+            "polyfills": "apps/frontend-one/src/polyfills.ts",
+            "tsConfig": "apps/frontend-one/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "apps/app-one/src/favicon.ico",
-              "apps/app-one/src/assets"
+              "apps/frontend-one/src/favicon.ico",
+              "apps/frontend-one/src/assets"
             ],
-            "styles": ["apps/app-one/src/styles.scss"],
+            "styles": [
+              "apps/frontend-one/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/app-one/src/environments/environment.ts",
-                  "with": "apps/app-one/src/environments/environment.prod.ts"
+                  "replace": "apps/frontend-one/src/environments/environment.ts",
+                  "with": "apps/frontend-one/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -58,82 +84,215 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app-one:build",
-            "proxyConfig": "apps/app-one/proxy.conf.json"
+            "browserTarget": "frontend-one:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app-one:build:production"
+              "browserTarget": "frontend-one:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app-one:build"
+            "browserTarget": "frontend-one:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/app-one/tsconfig.app.json",
-              "apps/app-one/tsconfig.spec.json"
+              "apps/frontend-one/tsconfig.app.json",
+              "apps/frontend-one/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/app-one/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-one/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/app-one/jest.config.js",
-            "tsConfig": "apps/app-one/tsconfig.spec.json",
-            "setupFile": "apps/app-one/src/test-setup.ts"
+            "jestConfig": "apps/frontend-one/jest.config.js",
+            "tsConfig": "apps/frontend-one/tsconfig.spec.json",
+            "setupFile": "apps/frontend-one/src/test-setup.ts"
           }
         }
       }
     },
-    "app-one-e2e": {
-      "root": "apps/app-one-e2e",
-      "sourceRoot": "apps/app-one-e2e/src",
+    "frontend-one-e2e": {
+      "root": "apps/frontend-one-e2e",
+      "sourceRoot": "apps/frontend-one-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/app-one-e2e/cypress.json",
-            "tsConfig": "apps/app-one-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app-one:serve"
+            "cypressConfig": "apps/frontend-one-e2e/cypress.json",
+            "tsConfig": "apps/frontend-one-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-one:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app-one:serve:production"
+              "devServerTarget": "frontend-one:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/app-one-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/app-one-e2e/**"]
+            "tsConfig": [
+              "apps/frontend-one-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-one-e2e/**"
+            ]
           }
         }
       }
     },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
+    "frontend-two": {
       "projectType": "application",
-      "prefix": "api",
+      "schematics": {},
+      "root": "apps/frontend-two",
+      "sourceRoot": "apps/frontend-two/src",
+      "prefix": "nx-dev-starter",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/frontend-two",
+            "index": "apps/frontend-two/src/index.html",
+            "main": "apps/frontend-two/src/main.ts",
+            "polyfills": "apps/frontend-two/src/polyfills.ts",
+            "tsConfig": "apps/frontend-two/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/frontend-two/src/favicon.ico",
+              "apps/frontend-two/src/assets"
+            ],
+            "styles": [
+              "apps/frontend-two/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend-two/src/environments/environment.ts",
+                  "with": "apps/frontend-two/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend-two:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend-two:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontend-two:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/frontend-two/tsconfig.app.json",
+              "apps/frontend-two/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-two/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/frontend-two/jest.config.js",
+            "tsConfig": "apps/frontend-two/tsconfig.spec.json",
+            "setupFile": "apps/frontend-two/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "frontend-two-e2e": {
+      "root": "apps/frontend-two-e2e",
+      "sourceRoot": "apps/frontend-two-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/frontend-two-e2e/cypress.json",
+            "tsConfig": "apps/frontend-two-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-two:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend-two:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/frontend-two-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-two-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "api-one": {
+      "root": "apps/api-one",
+      "sourceRoot": "apps/api-one/src",
+      "projectType": "application",
+      "prefix": "api-one",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "outputPath": "dist/apps/api-one",
+            "main": "apps/api-one/src/main.ts",
+            "tsConfig": "apps/api-one/tsconfig.app.json",
+            "assets": [
+              "apps/api-one/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -142,8 +301,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
+                  "replace": "apps/api-one/src/environments/environment.ts",
+                  "with": "apps/api-one/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -152,49 +311,86 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "api:build"
+            "buildTarget": "api-one:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
+              "apps/api-one/tsconfig.app.json",
+              "apps/api-one/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api-one/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json"
+            "jestConfig": "apps/api-one/jest.config.js",
+            "tsConfig": "apps/api-one/tsconfig.spec.json"
           }
         }
       }
     },
-    "api-interfaces": {
-      "root": "libs/api-interfaces",
-      "sourceRoot": "libs/api-interfaces/src",
-      "projectType": "library",
+    "api-two": {
+      "root": "apps/api-two",
+      "sourceRoot": "apps/api-two/src",
+      "projectType": "application",
+      "prefix": "api-two",
       "schematics": {},
       "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api-two",
+            "main": "apps/api-two/src/main.ts",
+            "tsConfig": "apps/api-two/tsconfig.app.json",
+            "assets": [
+              "apps/api-two/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api-two/src/environments/environment.ts",
+                  "with": "apps/api-two/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api-two:build"
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/api-interfaces/tsconfig.lib.json",
-              "libs/api-interfaces/tsconfig.spec.json"
+              "apps/api-two/tsconfig.app.json",
+              "apps/api-two/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/api-interfaces/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api-two/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/api-interfaces/jest.config.js",
-            "tsConfig": "libs/api-interfaces/tsconfig.spec.json"
+            "jestConfig": "apps/api-two/jest.config.js",
+            "tsConfig": "apps/api-two/tsconfig.spec.json"
           }
         }
       }
@@ -212,5 +408,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "app-one"
+  "defaultProject": "frontend-one"
 }
