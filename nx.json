@@ -8,9 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "api-interfaces": {
-      "tags": []
-    },
     "frontend-one-e2e": {
       "tags": []
     },
@@ -27,6 +24,12 @@
       "tags": []
     },
     "api-two": {
+      "tags": []
+    },
+    "api-one-interfaces": {
+      "tags": []
+    },
+    "api-two-interfaces": {
       "tags": []
     }
   }

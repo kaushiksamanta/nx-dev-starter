@@ -16,7 +16,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-dev-starter/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@nx-dev-starter/api-one-interfaces": [
+        "libs/api-one-interfaces/src/index.ts"
+      ],
+      "@nx-dev-starter/api-two-interfaces": [
+        "libs/api-two-interfaces/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

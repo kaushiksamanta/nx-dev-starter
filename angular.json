@@ -1,34 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "api-interfaces": {
-      "root": "libs/api-interfaces",
-      "sourceRoot": "libs/api-interfaces/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/api-interfaces/tsconfig.lib.json",
-              "libs/api-interfaces/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api-interfaces/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/api-interfaces/jest.config.js",
-            "tsConfig": "libs/api-interfaces/tsconfig.spec.json"
-          }
-        }
-      }
-    },
     "frontend-one": {
       "projectType": "application",
       "schematics": {},
@@ -49,9 +21,7 @@
               "apps/frontend-one/src/favicon.ico",
               "apps/frontend-one/src/assets"
             ],
-            "styles": [
-              "apps/frontend-one/src/styles.css"
-            ],
+            "styles": ["apps/frontend-one/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -105,10 +75,7 @@
               "apps/frontend-one/tsconfig.app.json",
               "apps/frontend-one/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend-one/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/frontend-one/**"]
           }
         },
         "test": {
@@ -142,13 +109,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/frontend-one-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend-one-e2e/**"
-            ]
+            "tsConfig": ["apps/frontend-one-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/frontend-one-e2e/**"]
           }
         }
       }
@@ -173,9 +135,7 @@
               "apps/frontend-two/src/favicon.ico",
               "apps/frontend-two/src/assets"
             ],
-            "styles": [
-              "apps/frontend-two/src/styles.css"
-            ],
+            "styles": ["apps/frontend-two/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -229,10 +189,7 @@
               "apps/frontend-two/tsconfig.app.json",
               "apps/frontend-two/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend-two/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/frontend-two/**"]
           }
         },
         "test": {
@@ -266,13 +223,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/frontend-two-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend-two-e2e/**"
-            ]
+            "tsConfig": ["apps/frontend-two-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/frontend-two-e2e/**"]
           }
         }
       }
@@ -290,9 +242,7 @@
             "outputPath": "dist/apps/api-one",
             "main": "apps/api-one/src/main.ts",
             "tsConfig": "apps/api-one/tsconfig.app.json",
-            "assets": [
-              "apps/api-one/src/assets"
-            ]
+            "assets": ["apps/api-one/src/assets"]
           },
           "configurations": {
             "production": {
@@ -321,10 +271,7 @@
               "apps/api-one/tsconfig.app.json",
               "apps/api-one/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api-one/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api-one/**"]
           }
         },
         "test": {
@@ -349,9 +296,7 @@
             "outputPath": "dist/apps/api-two",
             "main": "apps/api-two/src/main.ts",
             "tsConfig": "apps/api-two/tsconfig.app.json",
-            "assets": [
-              "apps/api-two/src/assets"
-            ]
+            "assets": ["apps/api-two/src/assets"]
           },
           "configurations": {
             "production": {
@@ -380,10 +325,7 @@
               "apps/api-two/tsconfig.app.json",
               "apps/api-two/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api-two/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api-two/**"]
           }
         },
         "test": {
@@ -391,6 +333,56 @@
           "options": {
             "jestConfig": "apps/api-two/jest.config.js",
             "tsConfig": "apps/api-two/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-one-interfaces": {
+      "root": "libs/api-one-interfaces",
+      "sourceRoot": "libs/api-one-interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-one-interfaces/tsconfig.lib.json",
+              "libs/api-one-interfaces/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api-one-interfaces/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-one-interfaces/jest.config.js",
+            "tsConfig": "libs/api-one-interfaces/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-two-interfaces": {
+      "root": "libs/api-two-interfaces",
+      "sourceRoot": "libs/api-two-interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-two-interfaces/tsconfig.lib.json",
+              "libs/api-two-interfaces/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api-two-interfaces/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-two-interfaces/jest.config.js",
+            "tsConfig": "libs/api-two-interfaces/tsconfig.spec.json"
           }
         }
       }
