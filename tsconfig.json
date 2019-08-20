@@ -21,7 +21,8 @@
       ],
       "@nx-dev-starter/api-two-interfaces": [
         "libs/api-two-interfaces/src/index.ts"
-      ]
+      ],
+      "@nx-dev-starter/nx-config": ["libs/nx-config/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

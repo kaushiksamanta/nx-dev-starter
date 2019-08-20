@@ -242,7 +242,10 @@
             "outputPath": "dist/apps/api-one",
             "main": "apps/api-one/src/main.ts",
             "tsConfig": "apps/api-one/tsconfig.app.json",
-            "assets": ["apps/api-one/src/assets"]
+            "assets": [
+              "apps/api-one/src/assets",
+              "apps/api-one/src/env"
+            ]
           },
           "configurations": {
             "production": {
@@ -296,7 +299,10 @@
             "outputPath": "dist/apps/api-two",
             "main": "apps/api-two/src/main.ts",
             "tsConfig": "apps/api-two/tsconfig.app.json",
-            "assets": ["apps/api-two/src/assets"]
+            "assets": [
+              "apps/api-two/src/assets",
+              "apps/api-two/src/env"
+            ]
           },
           "configurations": {
             "production": {
@@ -383,6 +389,31 @@
           "options": {
             "jestConfig": "libs/api-two-interfaces/jest.config.js",
             "tsConfig": "libs/api-two-interfaces/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "nx-config": {
+      "root": "libs/nx-config",
+      "sourceRoot": "libs/nx-config/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/nx-config/tsconfig.lib.json",
+              "libs/nx-config/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/nx-config/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/nx-config/jest.config.js",
+            "tsConfig": "libs/nx-config/tsconfig.spec.json"
           }
         }
       }
